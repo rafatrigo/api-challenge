@@ -1,10 +1,6 @@
 import {Router} from 'express'
 
-import CreateMovieService from '../services/CreateMovieService.js'
 import ListMoviesService from '../services/ListMoviesService.js'
-import AddCategoryService from '../services/AddCategoryService.js'
-import DeleteMovieService from '../services/DeleteMovieService.js'
-import UpdateMovieService from '../services/UpdateMovieService.js'
 import FindMoviesByTitleService from '../services/FindMoviesByTitleService.js'
 import FindMoviesByCategory from '../services/FindMovieByCategory.js'
 import AddToWatchListService from '../services/AddToWatchListService.js'
@@ -13,40 +9,6 @@ import ListMoviesToWatchService from '../services/ListMoviesToWatchService.js'
 import ListWatchedMoviesService from '../services/ListWatchedMoviesService.js'
 
 const movieRouter = Router()
-
-//create movie
-movieRouter.post('/', async (request, response) => {
-  const {title, synopsis, time} = request.body
-
-  const createMovie = new CreateMovieService
-
-  const newMovie = await createMovie.execute(title, synopsis, time)
-
-  return response.status(201).json(newMovie)
-})
-
-//delete movie
-movieRouter.delete('/:id', async (request, response) => {
-  const {id} = request.params
-
-  const deleteMovie = new DeleteMovieService
-
-  await deleteMovie.execute(id)
-
-  return response.status(204).send()
-})
-
-//update movie
-movieRouter.put('/:id', async (request, response) => {
-  const {title, synopsis, time} = request.body
-  const {id} = request.params
-
-  const updateMovie = new UpdateMovieService
-
-  const updatedMovie = await updateMovie.execute(id, title, synopsis, time)
-
-  return response.json(updatedMovie)
-})
 
 //list movies
 movieRouter.get('/', async (request, response) => {
@@ -77,17 +39,7 @@ movieRouter.get('/Watched', async (request, response) => {
   return response.json(list)
 })
 
-//add category to movie
-movieRouter.post('/:id', async (request, response) => {
-  const {id} = request.params
-  const {categoryTitle} = request.body
-  
-  const addCategory = new AddCategoryService
 
-  const movieWithCategory = await addCategory.execute(id, categoryTitle)
-
-  return response.json(movieWithCategory)
-})
 
 //find by name
 movieRouter.get('/search', async (request, response) => {
