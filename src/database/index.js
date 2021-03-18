@@ -6,7 +6,29 @@ import Movie from '../models/Movie.js';
 import Category from '../models/Category.js';
 import User from '../models/User.js'
 
-const models = [Movie, Category, User];
+import MovieCategories from '../models/MovieCategories.js';
+import UserMoviesToWatch from '../models/UserMoviesToWatch.js'
+import UserWatchedMovies from '../models/UserWatchedMovies.js'
+
+const models = [
+  Movie,
+  Category,
+  User,
+  MovieCategories,
+  UserMoviesToWatch,
+  UserWatchedMovies
+]
+
+export function connect(){
+  return process.env.NODE_ENV === 'build' ? 
+    new Sequelize(databaseConfig.build) : 
+    (
+      process.env.NODE_ENV === 'test' ?
+        new Sequelize(databaseConfig.test) :
+        new Sequelize(databaseConfig.dev)
+
+    )
+}
 
 class Database {
   constructor() {
@@ -14,7 +36,8 @@ class Database {
   }
 
   init() {
-    this.connection = new Sequelize(databaseConfig);
+    
+    this.connection = connect()
 
     models
       .map(model => model.init(this.connection))
@@ -24,9 +47,9 @@ class Database {
 }
 
 try {
-
-  const db = new Sequelize(databaseConfig)
-  await db.authenticate()
+  const db = connect()
+  
+  db.authenticate()
   console.log('🔗 Database connected')
   
 } catch (err) {

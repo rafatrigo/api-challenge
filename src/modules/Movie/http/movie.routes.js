@@ -118,9 +118,9 @@ movieRouter.post('/toWatch/:movieId', async (request, response) => {
 
   const AddToWatchList = new AddToWatchListService
 
-  await AddToWatchList.execute(movieId, userId)
+  const movieToWatch = await AddToWatchList.execute(movieId, userId)
 
-  return response.status(200).send()
+  return response.json(movieToWatch)
 })
 
 //add to watched list
@@ -130,9 +130,9 @@ movieRouter.post('/watch/:movieId', async (request, response) => {
 
   const AddToWatchedList = new AddToWatchedListService
 
-  await AddToWatchedList.execute(movieId, userId)
+  const movieWatched = await AddToWatchedList.execute(movieId, userId)
 
-  return response.status(200).send()
+  return response.json(movieWatched)
 })
 
 export default movieRouter
