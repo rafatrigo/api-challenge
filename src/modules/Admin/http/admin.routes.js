@@ -1,9 +1,14 @@
 import {Router} from 'express'
 
-import DeleteAdminService from '../services/DeleteAdiminService.js'
+import DeleteAdminService from '../services/DeleteAdminService.js'
 import UpdateAdminService from '../services/UpdateAdminService.js'
+import adminCategoryRouter from '../../Category/http/adminCategory.routes.js'
+import adminMovieRouter from '../../Movie/http/adminMovie.routes.js'
 
 const adminRouter = Router()
+
+adminRouter.use('/category', adminCategoryRouter)
+adminRouter.use('/movie', adminMovieRouter)
 
 
 //delete admin
