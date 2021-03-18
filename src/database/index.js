@@ -22,14 +22,9 @@ const models = [
 ]
 
 export function connect(){
-  return process.env.NODE_ENV === 'build' ? 
-    new Sequelize(databaseConfig.build) : 
-    (
-      process.env.NODE_ENV === 'test' ?
-        new Sequelize(databaseConfig.test) :
-        new Sequelize(databaseConfig.dev)
-
-    )
+  return process.env.NODE_ENV === 'test' ? 
+    new Sequelize(databaseConfig.test) : 
+    new Sequelize(databaseConfig.dev)
 }
 
 class Database {

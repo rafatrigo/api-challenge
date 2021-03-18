@@ -1,6 +1,7 @@
 import 'dotenv/config.js'
 import 'express-async-errors'
 import './database/index.js'
+import 'babel-polyfill'
 
 import express from 'express'
 import cors from 'cors'
