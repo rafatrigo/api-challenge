@@ -5,6 +5,7 @@ import databaseConfig from '../config/database.cjs';
 import Movie from '../models/Movie.js';
 import Category from '../models/Category.js';
 import User from '../models/User.js'
+import Admin from '../models/Admin.js'
 
 import MovieCategories from '../models/MovieCategories.js';
 import UserMoviesToWatch from '../models/UserMoviesToWatch.js'
@@ -16,7 +17,8 @@ const models = [
   User,
   MovieCategories,
   UserMoviesToWatch,
-  UserWatchedMovies
+  UserWatchedMovies,
+  Admin
 ]
 
 export function connect(){
