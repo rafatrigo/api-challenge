@@ -28,7 +28,7 @@ class AuthenticateUserService {
       expiresIn,
     })
 
-    return {token}
+    return token
     
   }
 }
