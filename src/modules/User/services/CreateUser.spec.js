@@ -27,11 +27,11 @@ describe('Create User', () => {
     expect(newUser).toBeInstanceOf(User)
   })
 
-  // it('should not be able to create a user with the same email as an existing user', async () => {
-  //   const createUser = new CreateUserService
+  it('should not be able to create a user with the same email as an existing user', async () => {
+    const createUser = new CreateUserService
 
-  //   const user = await createUser.execute('rafa', 'rafa@gmail.com', '123123')
+    await createUser.execute('rafa', 'rafa@gmail.com', '123123')
 
-  //   await expect(createUser.execute('rafa', 'rafa@gmail.com', '123123')).rejects.toBeInstanceOf(AppError)
-  // })
+    await expect(createUser.execute('rafa', 'rafa@gmail.com', '123123')).rejects.toBeInstanceOf(AppError)
+  })
 })
