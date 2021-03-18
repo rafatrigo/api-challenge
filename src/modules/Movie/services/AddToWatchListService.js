@@ -12,7 +12,9 @@ class AddToWatchListService {
 
     const user = await User.findOne({where: {id: userId}})
 
-    await user.addToWatch(movie)
+    const movieToWatch = await user.addToWatch(movie)
+
+    return movieToWatch
   }
 } 
 

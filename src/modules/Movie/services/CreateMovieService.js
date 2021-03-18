@@ -8,7 +8,7 @@ class CreateMovieService {
     })
 
     if(movie){
-      throw new AppError('The movie alredy exists')
+      throw new AppError('The movie already exists')
     }
 
     const newMovie = await Movie.create({title, synopsis, time})

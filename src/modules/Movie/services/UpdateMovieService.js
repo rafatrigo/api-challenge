@@ -11,9 +11,9 @@ class UpdateMovieService {
       throw new AppError('Movie not found')
     }
 
-    await movie.update({title, synopsis, time})
+    const updatedMovie = await movie.update({title, synopsis, time})
 
-    return ({title, synopsis, time})
+    return (updatedMovie)
   }
 }
 
