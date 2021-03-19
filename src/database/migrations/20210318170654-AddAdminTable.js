@@ -2,15 +2,11 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Admins', {
       id: {
         type: Sequelize.UUID,
         primaryKey: true,
         defaultValue: Sequelize.UUIDV1,
-      },
-      username: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
@@ -22,10 +18,10 @@ module.exports = {
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
-    })
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
-    queryInterface.dropTable('Users')
-  }
+    queryInterface.dropTable('Admins');
+  },
 };

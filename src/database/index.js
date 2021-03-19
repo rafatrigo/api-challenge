@@ -1,15 +1,15 @@
 import Sequelize from 'sequelize';
 
-import databaseConfig from '../config/database.cjs';
+import databaseConfig from '../config/database.js';
 
 import Movie from '../models/Movie.js';
 import Category from '../models/Category.js';
-import User from '../models/User.js'
-import Admin from '../models/Admin.js'
+import User from '../models/User.js';
+import Admin from '../models/Admin.js';
 
 import MovieCategories from '../models/MovieCategories.js';
-import UserMoviesToWatch from '../models/UserMoviesToWatch.js'
-import UserWatchedMovies from '../models/UserWatchedMovies.js'
+import UserMoviesToWatch from '../models/UserMoviesToWatch.js';
+import UserWatchedMovies from '../models/UserWatchedMovies.js';
 
 const models = [
   Movie,
@@ -18,13 +18,15 @@ const models = [
   MovieCategories,
   UserMoviesToWatch,
   UserWatchedMovies,
-  Admin
-]
+  Admin,
+];
 
-export function connect(){
-  return process.env.NODE_ENV === 'test' ? 
-    new Sequelize(databaseConfig.test) : 
-    new Sequelize(databaseConfig.dev)
+export function connect() {
+  return process.env.NODE_ENV === 'test'
+    ? new Sequelize(databaseConfig.test)
+    : process.env.NODE_ENV === 'dev'
+    ? new Sequelize(databaseConfig.dev)
+    : new Sequelize(databaseConfig.build);
 }
 
 class Database {
@@ -33,24 +35,21 @@ class Database {
   }
 
   init() {
-    
-    this.connection = connect()
+    this.connection = connect();
 
     models
       .map(model => model.init(this.connection))
       .map(model => model.associate && model.associate(this.connection.models));
   }
-
 }
 
 try {
-  const db = connect()
-  
-  db.authenticate()
-  console.log('🔗 Database connected')
-  
+  const db = connect();
+
+  db.authenticate();
+  console.log('🔗 Database connected');
 } catch (err) {
-  console.log('❌ Database connection failed')
+  console.log('❌ Database connection failed');
 }
 
 export default new Database();

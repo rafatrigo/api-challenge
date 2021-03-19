@@ -22,7 +22,7 @@ module.exports = {
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
-    })
+    });
 
     await queryInterface.createTable('Categories', {
       id: {
@@ -36,25 +36,25 @@ module.exports = {
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
-    })
+    });
 
     await queryInterface.createTable('MovieCategories', {
       MovieId: {
         type: Sequelize.UUID,
-        primaryKey: true
+        primaryKey: true,
       },
       CategoryId: {
         type: Sequelize.UUID,
-        primaryKey: true
+        primaryKey: true,
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
-    })
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('MovieCategories')
-    await queryInterface.dropTable('Categories')
-    await queryInterface.dropTable('Movies')
-  }
+    await queryInterface.dropTable('MovieCategories');
+    await queryInterface.dropTable('Categories');
+    await queryInterface.dropTable('Movies');
+  },
 };
