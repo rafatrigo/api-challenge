@@ -1,11 +1,11 @@
-import Category from '../../../models/Category.js'
+import Category from '../../../models/Category.js';
 
 class ListCategoriesService {
   async execute() {
-    const categories = await Category.findAll({include: 'movies'})
+    const categories = await Category.findAll({ include: 'movies' });
 
-    return categories
+    return categories;
   }
 }
 
-export default ListCategoriesService
+export default ListCategoriesService;
