@@ -7,10 +7,14 @@
     "build": "rimraf dist && babel src --extensions \".js\" --out-dir dist --copy-files",
     "dev:server": "nodemon",
     "start": "NODE_ENV=build node dist/server.js",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles"
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
+    "migration:dev": "cross-env NODE_ENV=dev sequelize-cli db:migrate",
+    "migration:test": "cross-env NODE_ENV=test sequelize-cli db:migrate",
+    "migration:build": "cross-env NODE_ENV=build sequelize-cli db:migrate"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "celebrate": "^14.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
