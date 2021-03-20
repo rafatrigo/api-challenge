@@ -1,6 +1,6 @@
 # API Challenge
 
-This is an API to simule a part of an API to streaming movies.
+This is an API to simulate a part of an API for streaming movies. This API mainly deals with the relationship between users, movies and categories.
 
 # Getting started
 
