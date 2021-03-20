@@ -1,28 +1,28 @@
-import {Router} from 'express'
+import { Router } from 'express';
 
-import ListCategoriesService from '../services/ListCategoriesService.js'
-import FindCategoryService from '../services/FindCategoryService.js'
+import ListCategoriesService from '../services/ListCategoriesService.js';
+import FindCategoryService from '../services/FindCategoryService.js';
 
-const categoryRouter = Router()
+const categoryRouter = Router();
 
 //list categories
 categoryRouter.get('/', async (request, response) => {
-  const listCategories = new ListCategoriesService
+  const listCategories = new ListCategoriesService();
 
-  const list = await listCategories.execute()
+  const list = await listCategories.execute();
 
-  return response.json(list)
-})
+  return response.json(list);
+});
 
 //find category
 categoryRouter.get('/search', async (request, response) => {
-  const {title} = request.body
+  const { title } = request.body;
 
-  const findCategory = new FindCategoryService
+  const findCategory = new FindCategoryService();
 
-  const category = await findCategory.execute(title)
+  const category = await findCategory.execute(title);
 
-  return response.json(category)
-})
+  return response.json(category);
+});
 
-export default categoryRouter
+export default categoryRouter;
