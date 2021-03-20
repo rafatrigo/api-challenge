@@ -1140,4 +1140,7 @@ Response code: 400
 
 ---
 
+
 &nbsp;
+
+Made with 💜 by Rafael Trigo
