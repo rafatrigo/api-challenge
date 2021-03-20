@@ -2,32 +2,41 @@ import Sequelize from 'sequelize';
 
 class User extends Sequelize.Model {
   static init(sequelize) {
-    super.init({
-      id: {
-        type: Sequelize.UUID,
-        primaryKey: true,
-        defaultValue: Sequelize.UUIDV1,
+    super.init(
+      {
+        id: {
+          type: Sequelize.UUID,
+          primaryKey: true,
+          defaultValue: Sequelize.UUIDV1,
+        },
+        username: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        email: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        password: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
       },
-      username: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      }
-    }, {sequelize});
+      { sequelize },
+    );
 
     return this;
   }
 
   static associate(models) {
-    this.belongsToMany(models.Movie, { through: 'UserWatchedMovies', as: 'watched'});
-    this.belongsToMany(models.Movie, { through: 'UserMoviesToWatch', as: 'toWatch'});
+    this.belongsToMany(models.Movie, {
+      through: 'UserWatchedMovies',
+      as: 'watched',
+    });
+    this.belongsToMany(models.Movie, {
+      through: 'UserMoviesToWatch',
+      as: 'toWatch',
+    });
   }
 }
 
